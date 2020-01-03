@@ -27,7 +27,7 @@
             <td><form method="POST" action="/posts/{{$post['id']}}"> 
               @csrf
               @method('delete')
-              <button class="btn btn-danger" type="submit">Delete</button></form> </td>
+              <button class="btn btn-danger" type="submit" onclick="return confirm('Do you really want to delete?');">Delete</button></form> </td>
           </tr>
           @endforeach
         </tbody>
