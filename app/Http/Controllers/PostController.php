@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 use App\Post;
 use Illuminate\Http\Request;
-
+use App\Http\Requests\StorePostRequest;
 class PostController extends Controller
 {
     function index (){
@@ -14,11 +14,12 @@ class PostController extends Controller
     function create (){
         return view('posts.create'); 
     }
-    function store (){
+    function store (StorePostRequest $request){
         
         Post::create([
-            'title' => request()->title,
-            'content' => request()->content
+            'title' => $request->title,
+            'content' => $request->content,
+            'user_id' => $request->user()->id
         ]);
         return redirect()->route('posts.index');
     }
@@ -28,11 +29,11 @@ class PostController extends Controller
         //dd($post);
         return view('posts.show',['posts'=>$post,'id'=>$id]);   //another way return request()->post;
     }
-    function update($id)
+    function update($id,StorePostRequest $request)
     {
         $post=Post::findOrFail($id);
-        $post->title = request()->title;
-        $post->content = request()->content;
+        $post->title = $request->title;
+        $post->content = $request->content;
         $post->save();
         return redirect()->route('posts.index');
     }
@@ -47,6 +48,7 @@ class PostController extends Controller
     function destroy($id){
         $post =Post::find($id);
         $post->delete();
+        return redirect()->route('posts.index');
     }
     
 }

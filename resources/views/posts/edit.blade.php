@@ -3,6 +3,15 @@
 <form method="POST" action="/posts/{{$posts->id}}">
     @csrf
     @method('PATCH')
+    @if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
     <div class="form-group">
       <label for="exampleInputEmail1">Title</label>
       <input type="text" name="title" value={{$posts->title}} class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="title">

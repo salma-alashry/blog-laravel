@@ -16,12 +16,30 @@ use App\Http\Controllers\PostController;
 Route::get('/', function () {
     return view('welcome');
 });
+Route::group(['middleware' => 'auth'],function(){
+
 Route::get('/posts', 'PostController@index')->name('posts.index');
+Route::get('posts/create', 'PostController@create')->name('posts.create');
+Route::post('/posts', 'PostController@store');
+Route::get('/posts/{post}', 'PostController@show')->name('posts.show');
+Route::patch('/posts/{post}', 'PostController@update')->name('posts.update');
+Route::get('/posts/{post}/edit', 'PostController@edit')->name('posts.edit');
+Route::delete('/posts/{post}', 'PostController@destroy')->name('posts.destroy');
+
+});
+/*Route::get('/posts', 'PostController@index')->name('posts.index');
 Route::get('/posts/create', 'PostController@create')->name('posts.create');
 Route::post('/posts', 'PostController@store');
 Route::get('/posts/{post}', 'PostController@show')->name('posts.show');
 Route::patch('/posts/{post}', 'PostController@update')->name('posts.update');
 Route::get('/posts/{post}/edit', 'PostController@edit')->name('posts.edit');
+Route::delete('/posts/{post}', 'PostController@destroy')->name('posts.destroy');*/
+
+
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
 
 ?>
-
