@@ -25,7 +25,7 @@
     <div class="card-body">
       <span class="card-title">Name :-</span> <span>{{$posts->user->name}}</span><br>
       <span>E-mail :-</span> <span>{{$posts->user->email}}</span><br>
-      <span>Created at :-</span> <span>{{$posts->created_at}}</span><br>
+      <span>Created at :-</span> <span>{{ $posts->created_at->format('l jS \\of F Y h:i:s A') }}</span><br>
     </div>
   </div>
 </div>

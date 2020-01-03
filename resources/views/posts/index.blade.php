@@ -21,7 +21,7 @@
             <td>{{$post->title}}</td>
             <td>{{$post->user->name}}</td>
             <td>{{$post['content']}}</td>
-            <td>{{$post['created_at']}}</td>
+            <td>{{ \Carbon\Carbon::parse($post->created_at)->format('Y-m-d')}}</td>
             <td><a class="btn btn-primary" href="{{route('posts.show',['post' => $post['id'] ])}}" role="button">view</a>
             <a class="btn btn-primary" href="{{route('posts.edit',['post' => $post['id'] ])}}" role="button">Edit</a></td>
             <td><form method="POST" action="/posts/{{$post['id']}}"> 
