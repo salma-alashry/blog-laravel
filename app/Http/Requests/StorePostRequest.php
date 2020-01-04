@@ -3,7 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-
+use Illuminate\Validation\Rule;
 class StorePostRequest extends FormRequest
 {
     /**
@@ -24,8 +24,8 @@ class StorePostRequest extends FormRequest
     public function rules()
     {
         return [
-            'title' => 'required|min:3',
-            'content' => 'required|min:10',
+            'title' => ['required','min:3','unique:posts,title'], //fadel elunique
+            'content' => 'required|min:10', //'unique:users,email_address' bta3et el uni
         ];
     }
 }
