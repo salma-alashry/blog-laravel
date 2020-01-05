@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers;
 use App\Post;
+use App\User;
 use Illuminate\Http\Request;
 use App\Http\Requests\StorePostRequest;
 class PostController extends Controller
 {
-    function index (){
+    function index (){ 
         return view('posts.index',[
-            'posts' => Post::all()
+            'posts' => Post::with('user')->get() //eager loading
         ]); 
     }
     function create (){

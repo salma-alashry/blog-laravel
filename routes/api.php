@@ -21,7 +21,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::get('/posts','Api\PostController@index')->middleware('auth:api'); //->middleware('auth:api');
 Route::get('/posts/{post}','Api\PostController@show')->middleware('auth:api');
 Route::post('/posts','Api\PostController@store')->middleware('auth:api');
-Route::get('/users', function () {
-    return new UserCollection(User::paginate());
-})->middleware('auth:api');
+
 
