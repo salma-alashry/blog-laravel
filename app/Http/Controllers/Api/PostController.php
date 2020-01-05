@@ -11,12 +11,14 @@ use App\Http\Requests\StorePostRequest;
 class PostController extends Controller
 {
     public function index(){
-        return PostResource::collection(Post::all()); //return array of objects
+        return PostResource::collection(Post::paginate(3)); //return array of objects
+        //return new UserCollection(User::paginate());
     }
     public function show($id)
     {
         $post = Post::find($id);
         return new PostResource($post); //return one object 
+        //return new UserCollection(User::paginate());
     }
     function store (StorePostRequest $request){
         

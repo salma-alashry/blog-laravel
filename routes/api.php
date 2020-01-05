@@ -2,7 +2,8 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-
+use App\User;
+use App\Http\Resources\UserCollection;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -20,4 +21,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::get('/posts','Api\PostController@index')->middleware('auth:api'); //->middleware('auth:api');
 Route::get('/posts/{post}','Api\PostController@show')->middleware('auth:api');
 Route::post('/posts','Api\PostController@store')->middleware('auth:api');
+Route::get('/users', function () {
+    return new UserCollection(User::paginate());
+})->middleware('auth:api');
 

@@ -24,8 +24,9 @@ class StorePostRequest extends FormRequest
     public function rules()
     {
         return [
-            'title' => ['required','min:3','unique:posts,title'], //fadel elunique
+            'title' => 'required','min:3','unique:posts,title'.$this->id . ',user_id', //fadel elunique
             'content' => 'required|min:10', //'unique:users,email_address' bta3et el uni
+            //'required|unique:users,email,'.$this->id . ',user_id';
         ];
     }
 }
