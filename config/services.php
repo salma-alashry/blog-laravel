@@ -32,7 +32,12 @@ return [
     'github' => [
         'client_id' => env('GITHUB_CLIENT_ID'),
         'client_secret' => env('GITHUB_CLIENT_SECRET'),
-        'redirect' => 'http://your-callback-url',
+        'redirect' => 'http://localhost:8000/login/github/callback',
+    ],
+    'google' => [
+        'client_id'     => env('GOOGLE_CLIENT_ID'),
+        'client_secret' => env('GOOGLE_CLIENT_SECRET'),
+        'redirect'      => 'http://localhost:8000/login/google/callback',
     ],
 
 ];

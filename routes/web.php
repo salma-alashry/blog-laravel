@@ -41,5 +41,16 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+/*//login with git hub
+Route::get('login/github', 'Auth\LoginController@redirectToProvider');
+Route::get('login/github/callback', 'Auth\LoginController@handleProviderCallback');
+*/
+Route::get('login/{driver}', 'Auth\LoginController@redirectToProvider')
+    ->name('login.provider')
+    ->where('driver', implode('|', config('auth.socialite.drivers')));
+
+    Route::get('login/{driver}/callback', 'Auth\LoginController@handleProviderCallback')
+    ->name('login.callback')
+    ->where('driver', implode('|', config('auth.socialite.drivers')));
 
 ?>
